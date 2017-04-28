@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML5-canvas Doraemon</title>
+    <style>
+        #put {
+            width: 50px;
+            height: 20px;
+        }
+
+        #doraemon {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<canvas id="doraemon" width="400" height="600"></canvas>
+<div id="put"></div>
+<script>
+  var cxt = document.getElementById('doraemon').getContext('2d')
+  //  header
+  function initialCanvas (canvas, width, color) {
+    canvas.lineWidth = width//线宽度为width
+    canvas.strokeStyle = color//笔触的颜色
+  }
+  function fillColor (canvas, color) {
+    canvas.fillStyle = color //设置填充时的颜色
+    canvas.fill()//填充颜色
+  }
+  (function () {
+    cxt.beginPath()//起始路径
+    initialCanvas(cxt, 1, '#000')
+    cxt.arc(200, 175, 175, 0.7 * Math.PI, 0.3 * Math.PI)//绘制弧，中心点（200，175），半径175
+    fillColor(cxt, '#0bb0da')
+    cxt.stroke()//绘制路径
+    // face
+    cxt.beginPath()
+    cxt.moveTo(110, 110)
+    cxt.quadraticCurveTo(-10, 200, 120, 315)
+    cxt.lineTo(280, 315)
+    cxt.quadraticCurveTo(410, 210, 290, 110)
+    cxt.lineTo(110, 110)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    // eyes
+    cxt.beginPath()
+    cxt.moveTo(110, 110)
+    cxt.bezierCurveTo(110, 25, 200, 25, 200, 100)
+    cxt.bezierCurveTo(200, 175, 110, 175, 110, 100)
+    cxt.moveTo(200, 100)
+    cxt.bezierCurveTo(200, 25, 290, 25, 290, 100)
+    cxt.bezierCurveTo(290, 175, 200, 175, 200, 100)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+
+    cxt.beginPath()
+    cxt.arc(230, 130, 12, 0, 2 * Math.PI)
+    fillColor(cxt, '#000')
+    cxt.stroke()
+
+    cxt.beginPath()
+    cxt.arc(170, 130, 12, 0, 2 * Math.PI)
+    fillColor(cxt, '#000')
+    cxt.stroke()
+    // nose
+    cxt.beginPath()
+    cxt.arc(200, 165, 25, 0, 2 * Math.PI)
+    fillColor(cxt, '#d05823')
+    cxt.stroke()
+    // bear
+    // left
+    cxt.beginPath()
+    cxt.moveTo(80, 175)
+    cxt.lineTo(150, 195)
+    cxt.moveTo(80, 200)
+    cxt.lineTo(150, 205)
+    cxt.moveTo(80, 225)
+    cxt.lineTo(150, 215)
+    //mid
+    cxt.moveTo(200, 195)
+    cxt.lineTo(200, 290)
+    //right
+    cxt.moveTo(250, 195)
+    cxt.lineTo(320, 175)
+    cxt.moveTo(250, 205)
+    cxt.lineTo(320, 200)
+    cxt.moveTo(250, 215)
+    cxt.lineTo(320, 225)
+    cxt.stroke()
+    // mouth
+    cxt.moveTo(80, 240)
+    cxt.quadraticCurveTo(200, 350, 320, 240)
+    cxt.stroke()
+    // scarf
+    cxt.beginPath()
+    cxt.moveTo(96, 316)
+    cxt.lineTo(305, 316)
+    cxt.lineTo(320, 316)
+    cxt.arcTo(330, 316, 330, 326, 10)//在画布上创建介于两个切线之间的弧，起点坐标为(330,316),终点坐标为(330,326),半径为10
+    cxt.lineTo(330, 336)
+    cxt.arcTo(330, 346, 305, 346, 10)
+    cxt.lineTo(81, 346)
+    cxt.arcTo(71, 346, 71, 336, 10)
+    cxt.lineTo(71, 326)
+    cxt.arcTo(71, 316, 81, 316, 10)
+    cxt.lineTo(96, 316)
+    fillColor(cxt, '#b13209')
+    cxt.stroke()
+    // cloth
+    cxt.beginPath()
+    cxt.moveTo(80, 346)
+    //left cloth
+    cxt.lineTo(26, 406)
+    cxt.lineTo(65, 440)
+    cxt.lineTo(85, 418)
+    cxt.lineTo(85, 528)
+    cxt.lineTo(185, 528)
+    //right cloth
+    cxt.lineTo(315, 528)
+    cxt.lineTo(315, 418)
+    cxt.lineTo(337, 440)
+    cxt.lineTo(374, 406)
+    cxt.lineTo(320, 346)
+    fillColor(cxt, '#0bb0da')
+    cxt.stroke()
+    // left hand
+    cxt.beginPath()
+    cxt.arc(37, 433, 30, 0, 2 * Math.PI)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    // right hand
+    cxt.beginPath()
+    cxt.arc(363, 433, 30, 0, 2 * Math.PI)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    //belly
+    cxt.beginPath()
+    cxt.arc(200, 400, 91, 1.8 * Math.PI, 1.2 * Math.PI)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    // pocket
+    cxt.beginPath()
+    cxt.moveTo(130, 394)
+    cxt.lineTo(270, 394)
+    cxt.moveTo(130, 394)
+    cxt.bezierCurveTo(130, 490, 270, 490, 270, 394)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    // space between foots
+    cxt.beginPath()
+    cxt.arc(200, 529, 20, Math.PI, 0)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    // left foot
+    cxt.beginPath()
+    cxt.moveTo(180, 528)
+    cxt.lineTo(72, 528)
+    cxt.bezierCurveTo(52, 528, 52, 558, 72, 558)
+    cxt.lineTo(180, 558)
+    cxt.moveTo(180, 558)
+    cxt.bezierCurveTo(200, 558, 200, 528, 180, 528)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+    // right foot
+    cxt.beginPath()
+    cxt.moveTo(220, 528)
+    cxt.lineTo(328, 528)
+    cxt.bezierCurveTo(348, 528, 348, 558, 328, 558)
+    cxt.lineTo(220, 558)
+    cxt.moveTo(220, 558)
+    cxt.bezierCurveTo(200, 558, 200, 528, 220, 528)
+    fillColor(cxt, '#fff')
+    cxt.stroke()
+  }(1))
+
+</script>
