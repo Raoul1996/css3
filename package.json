@@ -1,0 +1,19 @@
+{
+  "name": "css3-html5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raoul1996/css3-html5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Raoul1996/css3-html5/issues"
+  },
+  "homepage": "https://github.com/Raoul1996/css3-html5#readme"
+}
