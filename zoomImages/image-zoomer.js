@@ -11,7 +11,9 @@ class ImageZoomer {
     this.onMove = this.onMove.bind(this)
     this.onEnd = this.onEnd.bind(this)
     this.update = this.update.bind(this)
+    this.onResize = this.onResize.bind(this)
 
+    this.targetBCR = null
     this.zoomed = 0
     this.targetZoomed = 0
 
@@ -22,6 +24,7 @@ class ImageZoomer {
 
     this.initCanvas()
     this.addEventListeners()
+    this.onResize()
     requestAnimationFrame(this.update)
 
   }
@@ -39,7 +42,9 @@ class ImageZoomer {
 
     this.ctx.scale(dPR, dPR)
   }
-
+onResize() {
+    this.targetBCR = this.target.getBoundingClientRect()
+}
   onStart (evt) {
     if (evt.target !== this.target) return
     this.x = evt.pageX || evt.touches[0].pageX
@@ -55,17 +60,13 @@ class ImageZoomer {
     if (!this.trackingTouch) return
     this.x = evt.pageX || evt.touches[0].pageX
     this.y = evt.pageY || evt.touches[0].pageY
-
-    if (this.scheduledUpdate) return
-    this.scheduledUpdate = true
-    requestAnimationFrame(this.update)
   }
 
   onEnd () {
     this.trackingTouch = false
 
     this.targetZoomed = 0
-    console.log('haha')
+    // console.log('haha')
   }
 
   update () {
@@ -73,12 +74,25 @@ class ImageZoomer {
     const MAX_RADIUS = 46
     const radius = this.zoomed * MAX_RADIUS
 
-    this.ctx.clearRect(0,0,128,128)
-    this.ctx.fillStyle = '#ffffff'
+    const targetX = (this.x - this.targetBCR.left) / this.targetBCR.width;
+    const targetY = (this.y - this.targetBCR.top) / this.targetBCR.height;
+    console.log(targetX,targetY)
+    this.ctx.shadowColor = 'rgba(0,0,0,.4)'
+    this.ctx.shadowBlur = 12
+    this.ctx.shadowOffsetY = 8
+
+    this.ctx.clearRect(0, 0, 128, 128)
+    this.ctx.fillStyle = 'rgba(0,0,0,.1)'
     this.ctx.beginPath()
-    this.ctx.arc(64, 128 - radius, radius, 0, TAU)
+    this.ctx.arc(64, 116 - (radius + 1), radius + 1, 0, TAU)
     this.ctx.closePath()
     this.ctx.fill()
+
+    this.ctx.save()
+    this.ctx.arc(64, 116 - radius, radius, 0, TAU)
+    this.ctx.clip()
+    this.ctx.drawImage(this.target, -targetX, -targetY)
+    this.ctx.restore()
 
     this.element.style.transform = `translate(${this.x}px,${this.y}px)`
 
@@ -92,12 +106,14 @@ class ImageZoomer {
     document.addEventListener('touchstart', this.onStart)
     document.addEventListener('touchmove', this.onMove)
     document.addEventListener('touchend', this.onEnd)
+    window.addEventListener('resize',this.onResize)
   }
 
   removeEventListeners () {
     document.removeEventListener('touchstart', this.onStart)
     document.removeEventListener('touchmove', this.onMove)
     document.removeEventListener('touchend', this.onEnd)
+    window.removeEventListener('resize',this.onResize)
   }
 }
 
