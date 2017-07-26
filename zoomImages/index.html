@@ -1,22 +1,26 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>zoom images</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="Paul Lewis" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="theme-color" content="#455A64">
+    <title>Image Zoomer</title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="header">
-    <h1 class="header-title">Image Zoomer</h1>
+    <h1 class="header__title">Image Zoomer</h1>
 </header>
 <main class="main">
-    <img src="./gibraltar.jpg" alt="" class="target">
+    <div class="image-surround">
+        <img src="./gibraltar.jpg" class="target">
+    </div>
 </main>
 <div class="zoomer">
-<canvas class="zoomer-canvas"></canvas>
+<canvas class="zoomer__canvas"></canvas>
 </div>
 <script src="image-zoomer.js"></script>
 </body>
