@@ -55,7 +55,6 @@ body .zoomer {
   pointer-events: none;
 }
 body .zoomer .zoomer__canvas {
-  border: 1px solid #f00;
   position: absolute;
   left: -64px;
   top: -134px;
